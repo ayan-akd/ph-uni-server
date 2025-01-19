@@ -21,7 +21,7 @@ import { TAdmin } from '../admin/admin.interface';
 import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary';
 
 const createStudentIntoDB = async (
-  path: any,
+  file: any,
   password: string,
   payload: TStudent,
 ) => {
@@ -63,9 +63,9 @@ const createStudentIntoDB = async (
     }
     userData.id = await generateStudentId(admissionSemester);
 
-    if (path) {
+    if (file) {
       const imageName = `${userData.id}${payload?.name?.firstName}`;
-
+      const path = file?.path;
       const { secure_url } = await sendImageToCloudinary(imageName, path);
       payload.profileImg = secure_url as string;
     }
@@ -96,7 +96,7 @@ const createStudentIntoDB = async (
   }
 };
 const createFacultyIntoDB = async (
-  path: any,
+  file: any,
   password: string,
   payload: TFaculty,
 ) => {
@@ -125,9 +125,9 @@ const createFacultyIntoDB = async (
 
     userData.id = await generateFacultyId();
 
-    if (path) {
+    if (file) {
       const imageName = `${userData.id}${payload?.name?.firstName}`;
-
+      const path = file?.path;
       const { secure_url } = await sendImageToCloudinary(imageName, path);
       payload.profileImg = secure_url as string;
     }
@@ -158,7 +158,7 @@ const createFacultyIntoDB = async (
   }
 };
 const createAdminIntoDB = async (
-  path: any,
+  file: any,
   password: string,
   payload: TAdmin,
 ) => {
@@ -180,9 +180,9 @@ const createAdminIntoDB = async (
 
     userData.id = await generateAdminId();
 
-    if (path) {
+    if (file) {
       const imageName = `${userData.id}${payload?.name?.firstName}`;
-
+      const path = file?.path;
       const { secure_url } = await sendImageToCloudinary(imageName, path);
       payload.profileImg = secure_url as string;
     }
