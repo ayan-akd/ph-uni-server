@@ -29,4 +29,10 @@ router.patch(
 
 router.get('/', AcademicFacultyControllers.getAllAcademicFaculties);
 
+router.delete(
+  '/:facultyId',
+  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
+  AcademicFacultyControllers.deleteAcademicFaculty,
+);
+
 export const AcademicFacultyRoutes = router;

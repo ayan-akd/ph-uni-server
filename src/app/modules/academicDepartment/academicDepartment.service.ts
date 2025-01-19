@@ -43,10 +43,15 @@ const updateAcademicDepartmentIntoDB = async (
   );
   return result;
 };
+const deleteAcademicDepartmentFromDB = async (id: string) => {
+  const result = await AcademicDepartment.findByIdAndDelete(id);
+  return result;
+};
 
 export const AcademicDepartmentServices = {
   createAcademicDepartmentIntoDB,
   getAllAcademicDepartmentsFromDB,
   getSingleAcademicDepartmentFromDB,
   updateAcademicDepartmentIntoDB,
+  deleteAcademicDepartmentFromDB,
 };
